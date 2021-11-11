@@ -10,6 +10,8 @@
 #  updated_at :datetime         not null
 #
 class Artwork < ApplicationRecord
+  validates :title, uniqueness: {scope: :artist_id}
+
     belongs_to :artist,
       primary_key: :id,
       foreign_key: :artist_id,
@@ -18,5 +20,5 @@ class Artwork < ApplicationRecord
     has_many :artwork_shares,
       primary_key: :id,
       foreign_key: :artwork_id,
-      class_name: :ArtWorkShare
+      class_name: :ArtworkShare
 end
